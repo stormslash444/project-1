@@ -1,1 +1,37 @@
+import random
 
+def roll():
+    value=random.randint(1,6)
+    return value
+
+start=input("Do you want to start the game ?(y/n) ")
+if start=="y":
+    players=int(input("Enter the number of players(2-4) : "))
+    player_scores=[0 for i in range(players)]
+    while max(player_scores)<=50:
+     for i in range(players):
+         while True:
+          print("Player ",i+1," turn has started")
+          choice=input("Do you want to roll (y/n)?")
+          if choice=="y":
+              r=roll()
+              if r==1:
+                  player_scores[i]=0
+                  print(player_scores[i])
+                  break
+              else:
+                  player_scores[i]+=r
+                  print(player_scores[i])
+                  if player_scores[i]>50:
+                     break
+
+          elif choice=="n":
+              break
+     if max(player_scores)>50:
+        for k in range(len(player_scores)):
+           if player_scores[k]==max(player_scores):
+              print("player ",k+1,"wins")
+              print("Thank you for playing")
+
+else:
+   print("Exiting game!!!")
